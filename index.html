@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="superHomepage">
+
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+  <script src="resource/superHomepage.js"></script>
+</head>
+
+<body ng-controller="superHomepageCtrl">
+  <div>
+    <p>Name:
+      <input type="text" ng-model="fullName">
+    </p>
+    <p ng-bind="fullName"></p>
+  </div>
+</body>
+
+</html>
