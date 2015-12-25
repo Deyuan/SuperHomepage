@@ -75,6 +75,9 @@
         if (ui.data.name.trim().length) {
           var el = document.createElement('li');
           if (ui.data.url.trim().length) {
+            if (ui.data.url.indexOf('://') == -1) {
+              ui.data.url = 'http://' + ui.data.url;
+            }
             el.innerHTML = '<a href="' + ui.data.url + '">' + ui.data.name + '</a>';
           } else {
             el.innerHTML = ui.data.name;
