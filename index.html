@@ -1,44 +1,60 @@
-<!DOCTYPE html>
-<html ng-app="superHomepage">
-
+<!doctype html>
+<html>
 <head>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <meta charset="utf-8"/>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
-  <script src="http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js"></script>
-	<script src="http://rubaxa.github.io/Ply/Ply.min.js"></script>
-  <script src="resource/superHomepage.js"></script>
+  <script src="http://rubaxa.github.io/Ply/Ply.min.js"></script>
+  <script src="https://raw.githubusercontent.com/eligrey/FileSaver.js/master/FileSaver.min.js"></script>
+
   <style type="text/css">
-      ul {
-          padding-left: 20px;
-          width: 200px;
-      }
-      li {
-          color: orange;
-          height: 20px;
-          margin-bottom: 10px;
-          -webkit-border-radius: 0px;
-      	  -webkit-box-shadow: 1px 1px 2px 1px #AAAAAA;
-      }
+    div.category {
+        width: 200px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0px;
+      width: auto;
+      font-size: 14px;
+      position: relative;
+    }
+    li {
+      border-width: thin;
+      border-style: solid;
+      border-color: grey;
+      -webkit-box-shadow: 1px 1px 1px 0px lightgrey;
+      background-color: #eeeeee;
+      width: auto;
+      margin-bottom: 5px;
+      padding: 1px 2px 1px 2px;
+      position: relative;
+      word-wrap: break-word;
+    }
+    li i {
+      -webkit-transition: opacity .2s;
+      transition: opacity .2s;
+      opacity: 0;
+      cursor: pointer;
+      font-style: normal;
+      color: grey;
+      position: absolute;
+      top: 2px;
+      right: 3px;
+    }
+    li:hover i {
+      opacity: 1;
+    }
   </style>
 </head>
 
-<body ng-controller="superHomepageCtrl">
-  <div>
-    <p>Name:
-      <input type="text" ng-model="fullName">
-    </p>
-    <p ng-bind="fullName"></p>
-  </div>
-  <input type="submit" value="Save"/>
-
-
-  <div>
+<body>
+  <div class="category">
     <ul id="items">
-      <li> <a href="https://www.google.com">Google</a> <span style="float:right;"><i align="right" class="js-remove">X</i></span> </li>
-      <li> <a href="https://www.amazon.com">Amazon</a> <span style="float:right;"><i align="right" class="js-remove">X</i></span> </li>
-      <li> <a href="http://www.virginia.edu">University of Virginia</a> <span style="float:right;"><i align="right" class="js-remove">X</i></span> </li>
+      <li> <a href="https://www.google.com">Google</a> <i class="js-remove">✖</i></li>
+      <li> <a href="https://www.amazon.com">Amazon</a> <i class="js-remove">✖</i></li>
+      <li> <a href="http://www.virginia.edu">University of Virginia</a><i class="js-remove">✖</i></li>
     </ul>
-    <button id="addUser">Add</button>
+    <button id="btnAddTerm">Add</button>
+    <button id="btnSaveAs">Save</button>
   </div>
 
   <script>
@@ -46,20 +62,34 @@
     var sortable = Sortable.create(el, {
       animation: 300,
       filter: '.js-remove',
-		  onFilter: function (evt) {
-			  evt.item.parentNode.removeChild(evt.item);
-		  }
+      onFilter: function (evt) {
+          evt.item.parentNode.removeChild(evt.item);
+      }
     });
-    var byId = function (id) { return document.getElementById(id); }
-    byId('addUser').onclick = function () {
+
+    document.getElementById('btnAddTerm').onclick = function () {
       Ply.dialog('prompt', {
-        title: 'Add',
-        form: { name: 'name', url: 'url' }
+        title: 'Add Bookmark',
+        form: { name: 'Name', url: 'URL' }
       }).done(function (ui) {
-        var el = document.createElement('li');
-        el.innerHTML = '<a href="' + ui.data.url + '">' + ui.data.name + '</a>' + '<span style="float:right;"><i align="right" class="js-remove">X</i></span>';
-        sortable.el.appendChild(el);
+        if (ui.data.name.trim().length) {
+          var el = document.createElement('li');
+          if (ui.data.url.trim().length) {
+            el.innerHTML = '<a href="' + ui.data.url + '">' + ui.data.name + '</a>';
+          } else {
+            el.innerHTML = ui.data.name;
+          }
+          el.innerHTML += '<i class="js-remove">✖</i>';
+          sortable.el.appendChild(el);
+        }
       });
+    };
+
+    document.getElementById('btnSaveAs').onclick = function () {
+      var code = document.documentElement.innerHTML;
+      code = '<!doctype html>\n<html>\n' + code + '\n</html>\n'
+      var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, "test.html");
     };
   </script>
 
