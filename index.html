@@ -1,73 +1,243 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8">
+  <meta name="author" content="Deyuan Guo, Chong Tang">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
   <script src="http://rubaxa.github.io/Ply/Ply.min.js"></script>
   <script src="https://raw.githubusercontent.com/eligrey/FileSaver.js/master/FileSaver.min.js"></script>
 
   <style type="text/css">
-    div.category {
-        width: 200px;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 0px;
-      width: auto;
+    body {
+      width: 1300px;
       font-size: 14px;
-      position: relative;
     }
-    li {
-      border-width: thin;
+    div.column {
+      width: 210px;
+      position: relative;
+      float: left;
+      padding: 0px 0px 20px 0px;
+      margin: 0px 2px 10px 0px;
+      border-style: dotted;
+      border-color: #EEEEEE;
+      border-width: 1px;
+    }
+    div.category {
+      width: 200px;
+      position: relative;
+      float: left;
+      padding: 0px;
+      margin: 4px 4px 8px 4px;
       border-style: solid;
       border-color: grey;
+      border-width: 1px;
       -webkit-box-shadow: 1px 1px 1px 0px lightgrey;
-      background-color: #eeeeee;
-      width: auto;
-      margin-bottom: 5px;
-      padding: 1px 2px 1px 2px;
-      position: relative;
+    }
+    h1 {
+      padding: 1px 0px 1px 7px;
+      margin: 0px 0px 5px 0px;
+      background-color: #EEEEEE;
+      border-bottom-style: solid;
+      border-bottom-color: grey;
+      border-bottom-width: 1px;
+      font-size: 14px;
+      text-align: left;
       word-wrap: break-word;
     }
-    li i {
+    i {
       -webkit-transition: opacity .2s;
       transition: opacity .2s;
       opacity: 0;
       cursor: pointer;
       font-style: normal;
-      color: grey;
+      font-family: fantasy;
       position: absolute;
+    }
+    h1:hover i {
+      opacity: 1;
+    }
+    i.del_cate {
+      color: #AA0000;
+      top: 2px;
+      right: 3px;
+    }
+    i.add_bmk {
+      color: #00AA00;
+      top: 2px;
+      right: 18px;
+    }
+    i.rename_cate {
+      color: #0000AA;
+      top: 2px;
+      right: 33px;
+    }
+    ul.bmk_list {
+      list-style-type: none;
+      padding: 0px 5px 0px 5px;
+      margin: 0px;
+      border-style: solid;
+      border-color: white;
+      border-width: 1px;
+    }
+    li {
+      position: relative;
+      padding: 1px 2px 1px 2px;
+      margin: 0px 0px 5px 0px;
+      background-color: white;
+      border-width: thin;
+      border-style: solid;
+      border-color: grey;
+      -webkit-box-shadow: 1px 1px 1px 0px lightgrey;
+      word-wrap: break-word;
+    }
+    i.del_bmk {
+      color: #AA0000;
       top: 2px;
       right: 3px;
     }
     li:hover i {
       opacity: 1;
     }
+    div.footer {
+      background-color:lightgrey;
+      clear:both;
+      text-align:center;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding:10px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="category">
-    <ul id="items">
-      <li> <a href="https://www.google.com">Google</a> <i class="js-remove">✖</i></li>
-      <li> <a href="https://www.amazon.com">Amazon</a> <i class="js-remove">✖</i></li>
-      <li> <a href="http://www.virginia.edu">University of Virginia</a><i class="js-remove">✖</i></li>
-    </ul>
-    <button id="btnAddTerm">Add</button>
-    <button id="btnSaveAs">Save</button>
+  <div class="column">
+    <div class="category">
+      <h1>
+        Popular
+        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
+        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate">✖</i>
+      </h1>
+      <ul class="bmk_list">
+        <li> <a href="https://www.google.com">Google</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://www.facebook.com">Facebook</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="https://www.amazon.com">Amazon</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://www.linkedin.com">LinkedIn</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://www.apple.com">Apple</a> <i class="del_bmk">✖</i></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="category">
+      <h1>
+        Programming
+        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
+        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate">✖</i>
+      </h1>
+      <ul class="bmk_list">
+        <li> <a href="http://github.com">Github</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://codechef.com">Codechef</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://codeforces.com">Codeforces</a> <i class="del_bmk">✖</i></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="category">
+      <h1>
+        UVa
+        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
+        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate">✖</i>
+      </h1>
+      <ul class="bmk_list">
+        <li> <a href="http://www.virginia.edu">University of Virginia</a><i class="del_bmk">✖</i></li>
+        <li> <a href="http://www.cs.virginia.edu">UVa CS</a> <i class="del_bmk">✖</i></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="column">
+  </div>
+
+  <div class="column">
+  </div>
+
+  <div class="column">
+  </div>
+
+  <div class="footer">
+    <button id="btnAddCategory">Add New Category</button>
+    <button id="btnSaveAs">Save As Html...</button>
   </div>
 
   <script>
-    var el = document.getElementById('items');
-    var sortable = Sortable.create(el, {
-      animation: 300,
-      filter: '.js-remove',
-      onFilter: function (evt) {
-          evt.item.parentNode.removeChild(evt.item);
-      }
-    });
+    // To fix:
+    // Chrome: save as html
+    // Firefox: edit category name and add bookmark, button font
+    // Safari: none
+    // IE: not yet tested
 
-    document.getElementById('btnAddTerm').onclick = function () {
+    var colList = [];
+    var colIds = [];
+    var colSortable = [];
+    var bmkList = [];
+    var bmkIds = [];
+    var bmkSortable = [];
+    // ✎ &#9998; ✚ &#10010; ✖ &#10006;
+    var btns = '<i class="rename_cate" onclick="renameCategory(this)">&#9998;</i><i class="add_bmk" onclick="addBookmark(this)">&#10010;</i><i class="del_cate" >&#10006;</i>';
+
+    // Init 6 columns as Sortable
+    function initColumns() {
+      colList = document.getElementsByClassName("column");
+      colIds = [];
+      colSortable = [];
+      for (i = 0; i < colList.length; i++) {
+        colList[i].id = 'col' + i;
+        colIds[i] = 'col' + i;
+      };
+      for (i = 0; i < colList.length; i++) {
+        colSortable[i] = Sortable.create(colList[i], {
+          group: {name: colIds[i], pull: colIds, put: colIds},
+          animation: 300,
+          filter: '.del_cate',
+          onFilter: function (evt) {
+            evt.item.parentNode.removeChild(evt.item);
+          }
+        });
+      };
+    };
+
+    // Init bookmark lists as Sortable
+    function initBookmarks() {
+      bmkList = document.getElementsByClassName("bmk_list");
+      bmkIds = [];
+      bmkSortable = [];
+      for (i = 0; i < bmkList.length; i++) {
+        bmkList[i].id = 'bmk' + i;
+        bmkIds[i] = 'bmk' + i;
+      };
+      for (i = 0; i < bmkList.length; i++) {
+        bmkSortable[i] = Sortable.create(bmkList[i], {
+          group: {name: bmkIds[i], pull: bmkIds, put: bmkIds},
+          animation: 300,
+          filter: '.del_bmk',
+          onFilter: function (evt) {
+            evt.item.parentNode.removeChild(evt.item);
+          }
+        });
+      };
+    };
+
+    initColumns();
+    initBookmarks();
+
+    // Add a bookmark to a category
+    function addBookmark(btn) {
+      var cat = btn.parentNode.parentNode.children[1];
       Ply.dialog('prompt', {
         title: 'Add Bookmark',
         form: { name: 'Name', url: 'URL' }
@@ -77,23 +247,45 @@
           if (ui.data.url.trim().length) {
             if (ui.data.url.indexOf('://') == -1) {
               ui.data.url = 'http://' + ui.data.url;
-            }
+            };
             el.innerHTML = '<a href="' + ui.data.url + '">' + ui.data.name + '</a>';
           } else {
             el.innerHTML = ui.data.name;
-          }
-          el.innerHTML += '<i class="js-remove">✖</i>';
-          sortable.el.appendChild(el);
-        }
+          };
+          el.innerHTML += '<i class="del_bmk">&#10006;</i>'; //✖ &#10006;
+          cat.appendChild(el);
+        };
       });
     };
 
+    // Rename a category
+    function renameCategory(obj) {
+      var h1 = obj.parentNode;
+      Ply.dialog('prompt', {
+        title: 'Rename Category',
+        form: { name: 'Name' }
+      }).done(function (ui) {
+        h1.innerHTML = ui.data.name.trim() + btns;
+      });
+    };
+
+    // Add a category to the leftmost column on the page
+    document.getElementById('btnAddCategory').onclick = function () {
+      var el = document.createElement('div');
+      el.className = 'category';
+      el.innerHTML = '<h1>New Category' + btns + '</h1><ul class="bmk_list"></ul>';
+      colSortable[0].el.appendChild(el);
+      initBookmarks();
+    };
+
+    // Save the updated page to a local html file
     document.getElementById('btnSaveAs').onclick = function () {
       var code = document.documentElement.innerHTML;
-      code = '<!doctype html>\n<html>\n' + code + '\n</html>\n'
-      var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, "test.html");
+      code = '<!doctype html>\n<html>\n' + code + '\n</html>\n';
+      var blob = new Blob([code], {type: 'text/plain;charset=utf-8'});
+      saveAs(blob, 'index.html');
     };
+
   </script>
 
 </body>
