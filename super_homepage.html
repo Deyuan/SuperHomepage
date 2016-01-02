@@ -16,7 +16,7 @@
       padding: 0px 0px 20px 0px;
       margin: 0px 2px 10px 0px;
       border-style: dotted;
-      border-color: #EEEEEE;
+      border-color: #e5f7ff;
       border-width: 1px;
     }
     div.category {
@@ -26,18 +26,20 @@
       padding: 0px;
       margin: 4px 4px 8px 4px;
       border-style: solid;
-      border-color: grey;
+      border-color: #80d5ff;
       border-width: 1px;
-      box-shadow: 1px 1px 1px lightgrey;
+      box-shadow: 1px 1px 1px #ccefff;
     }
     h1 {
       padding: 1px 0px 1px 7px;
       margin: 0px 0px 5px 0px;
-      background-color: #EEEEEE;
+      background-color: #80d5ff;
       border-bottom-style: solid;
-      border-bottom-color: grey;
+      border-bottom-color: #80d5ff;
       border-bottom-width: 1px;
       font-size: 14px;
+      font-family: Arial;
+      color: white;
       text-align: left;
       word-wrap: break-word;
     }
@@ -47,56 +49,55 @@
       opacity: 0;
       cursor: pointer;
       font-style: normal;
-      font-family: fantasy;
+      font-family: Arial;
+      font-size: 12px;
       position: absolute;
     }
     h1:hover i {
       opacity: 1;
     }
     i.del_cate {
-      color: #AA0000;
-      top: 2px;
+      color: #0088cc;
+      top: 3px;
       right: 3px;
     }
     i.add_bmk {
-      color: #00AA00;
-      top: 2px;
+      color: #0088cc;
+      top: 3px;
       right: 18px;
     }
     i.rename_cate {
-      color: #0000AA;
-      top: 2px;
+      color: #0088cc;
+      top: 3px;
       right: 33px;
     }
     ul.bmk_list {
       list-style-type: none;
-      padding: 0px 5px 0px 5px;
+      padding: 0px 5px 2px 5px;
       margin: 0px;
-      border-style: solid;
-      border-color: white;
-      border-width: 1px;
     }
     li {
       position: relative;
       padding: 1px 2px 1px 2px;
-      margin: 0px 0px 5px 0px;
-      background-color: white;
-      border-width: thin;
+      margin: 0px 0px 2px 0px;
+      background-color: #ccefff;
+      /* border-width: thin;
       border-style: solid;
-      border-color: grey;
-      box-shadow: 1px 1px 1px lightgrey;
+      border-color: #80d5ff;
+      box-shadow: 1px 1px 1px #ccefff; */
+      font-family: Arial;
       word-wrap: break-word;
     }
     i.del_bmk {
-      color: #AA0000;
-      top: 2px;
+      color: #0088cc;
+      top: 3px;
       right: 3px;
     }
     li:hover i {
       opacity: 1;
     }
     div.footer {
-      background-color:lightgrey;
+      background-color: #ccefff;
       clear:both;
       text-align:center;
       position: fixed;
@@ -112,16 +113,16 @@
     <div class="category">
       <h1>
         Popular
-        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
-        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
-        <i class="del_cate">✖</i>
+        <i class="rename_cate" title="Rename Category" onclick="renameCategory(this)"><b>✍</b></i>
+        <i class="add_bmk" title="Add Bookmark" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate" title="Delete Category">✖</i>
       </h1>
       <ul class="bmk_list">
-        <li> <a href="https://www.google.com">Google</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="http://www.facebook.com">Facebook</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="https://www.amazon.com">Amazon</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="http://www.linkedin.com">LinkedIn</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="http://www.apple.com">Apple</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="https://www.google.com">Google</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://www.facebook.com">Facebook</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="https://www.amazon.com">Amazon</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://www.linkedin.com">LinkedIn</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://www.apple.com">Apple</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
       </ul>
     </div>
   </div>
@@ -130,14 +131,14 @@
     <div class="category">
       <h1>
         Programming
-        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
-        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
-        <i class="del_cate">✖</i>
+        <i class="rename_cate" title="Rename Category" onclick="renameCategory(this)"><b>✍</b></i>
+        <i class="add_bmk" title="Add Bookmark" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate" title="Delete Category">✖</i>
       </h1>
       <ul class="bmk_list">
-        <li> <a href="http://github.com">Github</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="http://codechef.com">Codechef</a> <i class="del_bmk">✖</i></li>
-        <li> <a href="http://codeforces.com">Codeforces</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://github.com">Github</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://codechef.com">Codechef</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://codeforces.com">Codeforces</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
       </ul>
     </div>
   </div>
@@ -146,13 +147,13 @@
     <div class="category">
       <h1>
         UVa
-        <i class="rename_cate" onclick="renameCategory(this)">✎</i>
-        <i class="add_bmk" onclick="addBookmark(this)">✚</i>
-        <i class="del_cate">✖</i>
+        <i class="rename_cate" title="Rename Category" onclick="renameCategory(this)"><b>✍</b></i>
+        <i class="add_bmk" title="Add Bookmark" onclick="addBookmark(this)">✚</i>
+        <i class="del_cate" title="Delete Category">✖</i>
       </h1>
       <ul class="bmk_list">
-        <li> <a href="http://www.virginia.edu">University of Virginia</a><i class="del_bmk">✖</i></li>
-        <li> <a href="http://www.cs.virginia.edu">UVa CS</a> <i class="del_bmk">✖</i></li>
+        <li> <a href="http://www.virginia.edu">University of Virginia</a><i class="del_bmk" title="Delete Bookmark">✖</i></li>
+        <li> <a href="http://www.cs.virginia.edu">UVa CS</a> <i class="del_bmk" title="Delete Bookmark">✖</i></li>
       </ul>
     </div>
   </div>
@@ -185,8 +186,8 @@
     var bmkList = [];
     var bmkIds = [];
     var bmkSortable = [];
-    // ✎ &#9998; ✚ &#10010; ✖ &#10006;
-    var btns = '<i class="rename_cate" onclick="renameCategory(this)">&#9998;</i><i class="add_bmk" onclick="addBookmark(this)">&#10010;</i><i class="del_cate" >&#10006;</i>';
+    // ✍ &#9997; ✚ &#10010; ✖ &#10006;
+    var btns = '<i class="rename_cate" title="Rename Category" onclick="renameCategory(this)"><b>&#9997;</b></i><i class="add_bmk" title="Add Bookmark" onclick="addBookmark(this)">&#10010;</i><i class="del_cate" title="Delete Category">&#10006;</i>';
 
     // Init 6 columns as Sortable
     function initColumns() {
@@ -250,7 +251,7 @@
           } else {
             el.innerHTML = ui.data.name;
           };
-          el.innerHTML += '<i class="del_bmk">&#10006;</i>'; //✖ &#10006;
+          el.innerHTML += '<i class="del_bmk" title="Delete Bookmark">&#10006;</i>'; //✖ &#10006;
           cat.appendChild(el);
         };
       });
@@ -281,7 +282,7 @@
       var code = document.documentElement.innerHTML;
       code = '<!doctype html>\n<html>\n' + code + '\n</html>\n';
       var blob = new Blob([code], {type: 'text/plain;charset=utf-8'});
-      saveAs(blob, 'index.html');
+      saveAs(blob, 'super_homepage.html');
     };
 
   </script>
